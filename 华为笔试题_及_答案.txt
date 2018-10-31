@@ -1,0 +1,171 @@
+真正的华为笔试题及我的解答
+今天华为打电话说要给我Offer了，怎么报答他的Offer呢，嗯，做套真正的华为笔试题吧。特意提到是真正的华为笔试题，是因为前面我做的号称华为笔试题其实是别人公司的（前面的帖子有解释），下面的内容地球人都说是华为的，难道还不是它的么。哈哈。
+　　这些题目相比其他公司的试题，较为基础，全部为C语言，没有涉及C++,但如果不细心，是很难得到较高分数的。另外大家转贴不要去掉我的个人信息啊。互相宣传下网站嘛。
+1. 找错
+void test1()
+{
+char string[10];
+char* str1="0123456789";
+strcpy(string, str1);
+}
+答：表面上并且编译都不会错误。但如果string数组原意表示的是字符串的话，那这个赋值就没有达到意图。最好定义为char string[11]，这样最后一个元素可以存储字符串结尾符'\0';
+
+void test2()
+{
+char string[10], str1[10];
+for(int I=0; I<10;I++)
+{
+str1[I] ='a';
+}
+strcpy(string, str1);
+}
+答：strcpy使用错误，strcpy只有遇到字符串末尾的'\0'才会结束，而str1并没有结尾标志，导致strcpy函数越界访问，不妨让str1[9]='\0'，这样就正常了。
+
+void test3(char* str1)
+{
+char string[10];
+if(strlen(str1)<=10)
+{
+strcpy(string, str1);
+}
+}
+答：这又会出现第一道改错题的错误了。strlen(str1)算出来的值是不包含结尾符'\0'的，如果str1刚好为10个字符＋1结尾符，string就得不到结尾符了。可将strlen(str1)<=10改为strlen(str1)<10。
+
+2. 找错
+#define MAX_SRM 256
+
+DSN get_SRM_no()
+{
+static int SRM_no;
+int I;
+for(I=0;I {
+SRM_no %= MAX_SRM;
+if(MY_SRM.state==IDLE)
+{
+break;
+}
+}
+if(I>=MAX_SRM)
+return (NULL_SRM);
+else
+return SRM_no;
+}
+答：我不知道这段代码的具体功能，但明显有两个错误
+1，SRM_no没有赋初值
+2，由于static的声明，使该函数成为不可重入（即不可预测结果）函数，因为SRM_no变量放在程序的全局存储区中，每次调用的时候还可以保持原来的赋值。这里应该去掉static声明。
+
+3. 写出程序运行结果
+int sum(int a)
+{
+auto int c=0;
+static int b=3;
+c+=1;
+b+=2;
+return(a+b+c);
+}
+void main()
+{
+int I;
+int a=2;
+for(I=0;I<5;I++)
+{
+printf("%d,", sum(a));
+}
+}
+答：8,10,12,14,16
+该题比较简单。只要注意b声明为static静态全局变量，其值在下次调用时是可以保持住原来的赋值的就可以。
+4. 
+int func(int a)
+{
+int b;
+switch(a)
+{
+case 1: b=30;
+case 2: b=20;
+case 3: b=16;
+default: b=0;
+}
+return b;
+}
+则func(1)=?
+答：func(1)=0，因为没有break语句，switch中会一直计算到b=0。这是提醒我们不要忘了break。呵呵。
+
+5:
+int a[3];
+a[0]=0; a[1]=1; a[2]=2;
+int *p, *q;
+p=a;
+q=&a[2];
+则a[q-p]=?
+答：a[q-p]=a[2]=2;这题是要告诉我们指针的运算特点
+
+6. 
+定义 int **a[3][4], 则变量占有的内存空间为：_____
+答：此处定义的是指向指针的指针数组，对于32位系统，指针占内存空间4字节，因此总空间为3×4×4＝48。
+
+7.
+编写一个函数，要求输入年月日时分秒，输出该年月日时分秒的下一秒。如输入2004年12月31日23时59分59秒，则输出2005年1月1日0时0分0秒。 
+答：
+/*输入年月日时分秒，输出年月日时分秒的下一秒，输出仍然在原内存空间*/
+void NextMinute(int *nYear,int *nMonth,int *nDate,int *nHour,int *nMinute,int *nSecond)
+{
+int nDays;
+(*nSecond)++; // 秒加1
+if(*nSecond>=60) // 秒满60，做出特殊处理，下面时，日，月等类同
+{
+*nSecond=0;
+(*nMinute)++;
+if(*nMinute>=60)
+{
+*nMinute=0;
+(*nHour)++;
+if(*nHour>=24)
+{
+*nHour=0;
+(*nDate)++;
+switch(*nMonth)
+{
+case 1:
+case 3:
+case 5:
+case 7:
+case 8:
+case 10:
+case 12:
+nDays=31;
+break;
+case 2:// 判断闰年
+if(*nYear%400==0||*nYear%100!=0&&*nYear%4==0)
+{
+nDays=29;
+}
+else
+{
+nDays=28;
+}
+break;
+default:
+nDays=30;
+break;
+}
+if(*nDate>nDays)
+{
+*nDate=1;
+(*nMonth)++;
+if(*nMonth>12)
+{
+*nMonth=1;
+(*nYear)++;
+}
+}
+}
+}
+}
+}
+/*示例可运行代码*/
+void main()
+{
+int nYear=2004,nMonth=12,nDate=31,nHour=59,nMinute=59,nSecond=59;
+NextMinute(&nYear,&nMonth,&nDate,&nHour,&nMinute,&nSecond);
+printf("The result:%d-%d-%d %d:%d:%d",nYear,nMonth,nDate,nHour,nMinute,nSecond);
+}

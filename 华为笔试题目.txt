@@ -1,0 +1,746 @@
+
+华为c语言笔试题
+一、判断题（对的写T，错的写F并说明原因，每小题4分，共20分）
+
+1、有数组定义int a[2][2]={{1},{2,3}};则a[0][1]的值为0。（ ）
+
+2、int (*ptr) (),则ptr是一维数组的名字。（ ）
+
+3、指针在任何情况下都可进行>, <, >=, <=, = =运算。（ ）
+
+4、switch(c) 语句中c可以是int, long, char, float, unsigned int 类型。（ ）
+
+5、#define print(x) printf(＂the no, ＂#x＂,is ＂)
+
+二、填空题（共30分）
+
+1、在windows下，写出运行结果，每空2分，共10分。
+
+char str[ ]= ＂Hello＂;
+
+char *p=str;int n=10;
+
+sizeof(str)=( )
+
+sizeof(p)=( )
+
+sizeof(n)=( )
+
+void func(char str[100]){ }
+
+sizeof(str)=( )
+
+2、void setmemory(char **p, int num)
+
+{ 
+
+*p=(char *) malloc(num);
+
+}
+
+void test(void)
+
+{ 
+
+char *str=NULL;
+
+getmemory(&str,100);
+
+strcpy(str,＂hello＂);
+
+printf(str);
+
+}
+
+运行test函数有什么结果？（ ）10分
+
+ 
+
+3.设int arr[]={6,7,8,9,10};
+
+int *ptr=arr; 
+
+(ptr++)+=123; 
+
+printf(＂%d,%d＂,*ptr,*(++ptr));( ) 10分
+
+二、编程题（第一小题20，第二小题30分）
+
+1、 不使用库函数，编写函数int strcmp(char *source, char *dest)相等返回0，不等返回-1；
+
+2、 写一函数int fun(char *p)判断一字符串是否为回文，是返回1，不是返回0，出错返回-1
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+一、判断题（对的写T，错的写F并说明原因，每小题4分，共20分） 
+
+字串7
+
+1、有数组定义int a[2][2]={{1},{2,3}};则a[0][1]的值为0。（ ） 字串3 
+
+2、int (*ptr) (),则ptr是一维数组的名字。（ ） 
+
+字串3
+
+
+3、指针在任何情况下都可进行>, <, >=, <=, = =运算。（ ） 
+
+字串4
+
+4、switch(c) 语句中c可以是int, long, char, float, unsigned int 类型。（ ） 字串9 
+
+5、#define print(x) printf(＂the no, ＂#x＂,is ＂) 
+
+字串2
+
+二、填空题（共30分） 字串6 
+
+1、在windows下，写出运行结果，每空2分，共10分。 字串4 
+
+char str[ ]= ＂Hello＂; 
+
+字串6
+
+char *p=str; 
+
+字串5
+
+
+int n=10; 字串7 
+
+sizeof(str)=( ) 
+
+字串8
+
+
+sizeof(p)=( ) 字串9 
+
+sizeof(n)=( ) 
+
+字串2
+
+void func(char str[100]) 
+
+字串9
+
+{ } 字串2 
+
+sizeof(str)=( ) 字串1 
+
+2、void setmemory(char **p, int num) 
+
+字串2
+
+
+{ *p=(char *) malloc(num);} 
+
+字串5
+
+void test(void) 字串2 
+
+{ char *str=NULL; 字串1 
+
+getmemory(&str,100); 
+
+字串4
+
+
+strcpy(str,＂hello＂); 字串4 
+
+printf(str); 字串8 
+
+} 字串5 
+
+运行test函数有什么结果？（ ）10分 字串9 
+
+3、设int arr[]={6,7,8,9,10}; 字串1 
+
+int *ptr=arr; 字串3 
+
+(ptr++)+=123; 
+printf(＂%d,%d＂,*ptr,*(++ptr)); 
+
+字串8
+
+( ) 10分 字串1 
+
+
+二、编程题（第一小题20，第二小题30分） 
+
+字串5
+
+
+1、 不使用库函数，编写函数int strcmp(char *source, char *dest) 字串7 
+
+相等返回0，不等返回-1； 
+
+字串8
+
+
+2、 写一函数int fun(char *p)判断一字符串是否为回文，是返回1，不是返回0，出错返回-1 
+
+
+
+
+华为笔试大全]华为最新笔试题及其分析 _bishiti.com　by - 2007-11-20 16:11:001.printf的输出问题
+
+ 
+
+printf("%d",total);//this is right
+printf(total);//this is wrong
+printf("hello");//but this is right
+
+ 
+
+2.整数类型的长度
+char 1个子节，8位
+
+ 
+
+unsigned short [int]
+[signed] short int 
+short 2个字节，16位
+
+[signed] int 
+unsigned int 
+int 型在vc里是4个子节，32位，也可能是16位,2个字节
+
+ 
+
+long [int]
+unsigned long [int]
+
+ 
+
+long型都是32位,4个字节
+
+ 
+
+float 32 ,4
+
+ 
+
+double 64,8
+
+ 
+
+long double 128,16
+
+ 
+
+char 8,一个字节,存放的实际上是字符的ascii码
+
+ 
+
+3、找出错误并改正
+
+ 
+
+char *my_cpy(char* src, int len){
+char dest[1024];
+memcpy(dest, src, len);
+return dest;
+}
+上面的函数是否有问题，如果有指出其所在，如果没有，给出函数功能描述。
+
+ 
+
+答案：
+1。数组应该初始化
+2。memcpy不判断是否越界，所以调用前应该判断是否越界
+3。不应该返回rest，因为这个数组是在函数内部申请的，所以函数结束之后就会消失，指针也会变成“野指针”，所以指向非法地址
+最后一个比较隐蔽
+
+ 
+
+char *memcpy( char *dest, const char *src,int len )
+{
+char* pDest = (char*)dest;
+char* pSrc = (char*)src;
+int pos;
+for(pos=0;pos<len;pos++)
+{
+pDest[pos] = pSrc[pos];
+}
+return (char*)pDest;
+}
+
+ 
+
+存在地问题就是没有判断指针是否非法assert(dest !=NULL || src != NULL); 条件为 FLASE 显示
+
+ 
+
+不调用其他函数，写一个memcpy的函数，函数原型为
+void *memcpy(void *dest, void *src, size_t length);
+
+ 
+
+-----------利用好断言---------
+
+ 
+
+/* memcpy ─── 拷贝不重叠的内存块 */
+void memcpy(void* pvTo, void* pvFrom, size_t size)
+{
+void* pbTo = (byte*)pvTo;
+void* pbFrom = (byte*)pvFrom;
+ASSERT(pvTo != NULL && pvFrom != NULL);
+/* 内存块重叠吗？如果重叠，就使用memmove */
+ASSERT(pbTo>=pbFrom+size || pbFrom>=pbTo+size);
+while(size-->0)
+*pbTo++ == *pbFrom++;
+return(pvTo);
+}
+
+ 
+
+-----------------------
+
+ 
+
+常见函数编程： 
+char *strcpy(char *strDest, const char *strSrc) 
+{ 
+ASSERT(strDest != NULL && strSrc != NULL); 
+char *addr = strDest; 
+while(*strDest++=*strSrc++)
+NULL; //NULL可以省略，但更有利于编译器发现错误
+} 
+return addr; 
+} 
+
+void *memcpy(void *dest, const void *src, int count) 
+{ 
+ASSERT(dest!= NULL && src!= NULL); 
+for(int i=0; i< cout; i++) 
+{ 
+dest = src; 
+} 
+} 
+int strcmp(const char*str1, const char *str2) 
+{ 
+while (str1 != NULL && str2 != NULL) 
+{ 
+if(*str1 < *str2) return -1; 
+else if(*str1 > *str2) return 1; 
+else { str1++; str2++;} 
+} 
+if(str1 == NULL && str2 != NULL) 
+return -1; 
+else if(str1 != NULL && str2 == NULL) 
+return 1; 
+else return 0; 
+} 
+
+//way2： more compact 
+int strcmp(const char*str1, const char *str2) 
+{ 
+int i = strlen( str1 ); 
+int j; 
+for(j=0; j<=i; j++) 
+{ 
+if(str1[j] > str2[j]) return 1; //if str2 terminates, then str2[j]=0, str1[j]>str2[j], return 1; 
+else if(str1[j] < str2[j]) return -1; 
+else if(str1[j] == '') return 0; 
+} 
+} 
+//way3: optimize again. 
+int strcmp(const char * str1, const char * str2 ) 
+{ 
+while(1) 
+{ 
+if(*str1 > *str2) return 1; 
+else if(*str1 < *str2) return -1; 
+else if(*str1 == '') return 0; 
+str1++;str2++; 
+} 
+}
+
+
+-----------------------------------------------------------------------------------------
+题目为：统计一个字符串中字符出现的次数   
+  我这样做的：先定义一个字符数组，遍历字符串将字符与数组中的字符比较，数组中没有时则将该字符放入其中，另定义一个整数数组，其对应位置放入该字符的个数；如果字符数组中存在该字符则直接在整数数组的对应位置加1。遍历完字符串时，其包含的字符和字符个数分别放到了两个数组中，到面试人却说该算法过于复杂，请各位给予指点。（以前上学时遇到过，具体如何做的忘了）
+
+-----------------------------------------------------------------------------------------
+
+华为笔试题 及 答案 (2006-01-01 14:44:20) 
+   分类：大学生活 
+
+欧哟!最近找什么电信 科技 网通 什么笔试面试等等等等的题目,累死我了.发现好多笔试题但是没有答案.现在我贡献出来啊~~ 适合通信工程专业和计算机专业的同学找工作之前的准备,如果觉得好给我留个言 ^_^ (还有转载别人的资料的 严重感谢^_^ 比如朱科哥哥)  还有别的通信行业的笔试面试题,如果要请联系我,无偿给你,大家一起资源共享 ^_^
+[转贴from朱科]真正的华为笔试题及我的解答
+　　今天华为打电话说要给我Offer了，怎么报答他的Offer呢，嗯，做套真正的华为笔试题吧。特意提到是真正的华为笔试题，是因为前面我做的号称华为笔试题其实是别人公司的（前面的帖子有解释），下面的内容地球人都说是华为的，难道还不是它的么。哈哈。
+　　这些题目相比其他公司的试题，较为基础，全部为C语言，没有涉及C++,但如果不细心，是很难得到较高分数的。另外大家转贴不要去掉我的个人信息啊。互相宣传下网站嘛。
+1. 找错
+void test1()
+{
+char string[10];
+char* str1="0123456789";
+strcpy(string, str1);
+}
+答：表面上并且编译都不会错误。但如果string数组原意表示的是字符串的话，那这个赋值就没有达到意图。最好定义为char string[11]，这样最后一个元素可以存储字符串结尾符'\0';
+
+void test2()
+{
+char string[10], str1[10];
+for(int I=0; I<10;I++)
+{
+str1[I] ='a';
+}
+strcpy(string, str1);
+}
+答：strcpy使用错误，strcpy只有遇到字符串末尾的'\0'才会结束，而str1并没有结尾标志，导致strcpy函数越界访问，不妨让str1[9]='\0'，这样就正常了。
+
+void test3(char* str1)
+{
+char string[10];
+if(strlen(str1)<=10)
+{
+strcpy(string, str1);
+}
+}
+答：这又会出现第一道改错题的错误了。strlen(str1)算出来的值是不包含结尾符'\0'的，如果str1刚好为10个字符＋1结尾符，string就得不到结尾符了。可将strlen(str1)<=10改为strlen(str1)<10。
+
+2. 找错
+#define MAX_SRM 256
+
+DSN get_SRM_no()
+{
+static int SRM_no;
+int I;
+for(I=0;I {
+SRM_no %= MAX_SRM;
+if(MY_SRM.state==IDLE)
+{
+break;
+}
+}
+if(I>=MAX_SRM)
+return (NULL_SRM);
+else
+return SRM_no;
+}
+答：我不知道这段代码的具体功能，但明显有两个错误
+1，SRM_no没有赋初值
+2，由于static的声明，使该函数成为不可重入（即不可预测结果）函数，因为SRM_no变量放在程序的全局存储区中，每次调用的时候还可以保持原来的赋值。这里应该去掉static声明。
+
+3. 写出程序运行结果
+int sum(int a)
+{
+auto int c=0;
+static int b=3;
+c+=1;
+b+=2;
+return(a+b+c);
+}
+void main()
+{
+int I;
+int a=2;
+for(I=0;I<5;I++)
+{
+printf("%d,", sum(a));
+}
+}
+答：8,10,12,14,16
+该题比较简单。只要注意b声明为static静态全局变量，其值在下次调用时是可以保持住原来的赋值的就可以。
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+插播广告啦：版权所有：朱科 欢迎光临我的网站：www.goodsoft.cn，各位转贴别删，劳动成果啊
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+4. 
+int func(int a)
+{
+int b;
+switch(a)
+{
+case 1: b=30;
+case 2: b=20;
+case 3: b=16;
+default: b=0;
+}
+return b;
+}
+则func(1)=?
+答：func(1)=0，因为没有break语句，switch中会一直计算到b=0。这是提醒我们不要忘了break。呵呵。
+
+5:
+int a[3];
+a[0]=0; a[1]=1; a[2]=2;
+int *p, *q;
+p=a;
+q=&a[2];
+则a[q-p]=?
+答：a[q-p]=a[2]=2;这题是要告诉我们指针的运算特点
+
+6. 
+定义 int **a[3][4], 则变量占有的内存空间为：_____
+答：此处定义的是指向指针的指针数组，对于32位系统，指针占内存空间4字节，因此总空间为3×4×4＝48。
+
+7.
+编写一个函数，要求输入年月日时分秒，输出该年月日时分秒的下一秒。如输入2004年12月31日23时59分59秒，则输出2005年1月1日0时0分0秒。 
+答：
+/*输入年月日时分秒，输出年月日时分秒的下一秒，输出仍然在原内存空间*/
+void NextMinute(int *nYear,int *nMonth,int *nDate,int *nHour,int *nMinute,int *nSecond)
+{
+int nDays;
+(*nSecond)++; // 秒加1
+if(*nSecond>=60) // 秒满60，做出特殊处理，下面时，日，月等类同
+{
+*nSecond=0;
+(*nMinute)++;
+if(*nMinute>=60)
+{
+*nMinute=0;
+(*nHour)++;
+if(*nHour>=24)
+{
+*nHour=0;
+(*nDate)++;
+switch(*nMonth)
+{
+case 1:
+case 3:
+case 5:
+case 7:
+case 8:
+case 10:
+case 12:
+nDays=31;
+break;
+case 2:// 判断闰年
+if(*nYear%400==0||*nYear%100!=0&&*nYear%4==0)
+{
+nDays=29;
+}
+else
+{
+nDays=28;
+}
+break;
+default:
+nDays=30;
+break;
+}
+if(*nDate>nDays)
+{
+*nDate=1;
+(*nMonth)++;
+if(*nMonth>12)
+{
+*nMonth=1;
+(*nYear)++;
+}
+}
+}
+}
+}
+}
+/*示例可运行代码*/
+void main()
+{
+int nYear=2004,nMonth=12,nDate=31,nHour=59,nMinute=59,nSecond=59;
+NextMinute(&nYear,&nMonth,&nDate,&nHour,&nMinute,&nSecond);
+printf("The result:%d-%d-%d %d:%d:%d",nYear,nMonth,nDate,nHour,nMinute,nSecond);
+}
+ 
+[转贴from朱科]加拿大电网络公司笔试题及答案
+ 
+加拿大著名电信设备制造商北电网络公司始建于一个世纪以前，在通讯发展进步历程中始终处于领袖地位，广东北电通信设备有限公司成立于1995年3月，是北电在华投资的核心公司之一。公司网址是http://www.gdnt.com.cn/
+　　下面是广东北电的笔试题（中英文题），这套题早已在网络上流传数年，从来只见题目，不见解答，那就让我做做吧。英文搞得不对的地方那就没办法了。希望大家转贴的时候声明出处。
+
+一：英文题。
+1. Tranlation (Mandatory)
+　　CDMA venders have worked hard to give CDMA roaming capabilities via the development of RUIM-essentially, a SIM card for CDMA handsets currently being deployed in China for new CDMA operator China Unicom. Korean cellco KTF demonstrated earlier this year the ability to roam between GSM and CDMA using such cards.However,only the card containing the user’s service data can roam-not the CDMA handset or the user’s number (except via call forwarding).
+翻译：CDMA开发商一直致力于RUIM卡的开发，以此赋予CDMA漫游的能力。RUIM卡类似于SIM卡，事实上目前它已经被中国的CDMA运营商中国联通广泛使用。韩国手机制造企业KTF今年早些时候展示了使用此种卡在GSM和CDMA网络中漫游的功能，但是，只有该卡包含的用户服务数据能够漫游，CDMA手机本身及用户号码则不能（除了呼叫前转业务）。
+呵呵。上文可能翻译的不太精准，欢迎批评。　　
+
+2. Programming (Mandatory) 
+　　Linked list
+　　a. Implement a linked list for integers,which supports the insertafter (insert a node after a specified node) and removeafter (remove the node after a specified node) methods;
+　　b. Implement a method to sort the linked list to descending order.
+答：题目的意思是实现一个整型链表，支持插入，删除操作（有特殊要求，都是在指定节点后进行操作），并写一个对链表数据进行降序排序的方法。
+那我们不妨以一个线性链表进行编程。
+// 单链表结构体为
+typedef struct LNode 
+{
+int data;
+struct LNode *next;
+}LNode, *pLinkList;
+
+// 单链表类
+class LinkList
+{
+private:
+pLinkList m_pList;
+int m_listLength;
+public:
+LinkList();
+~LinkList();
+bool InsertAfter(int afternode, int data);//插入
+bool RemoveAfter(int removenode);//删除
+void sort();//排序
+};
+
+实现方法
+//insert a node after a specified node
+bool LinkList::InsertAfter(int afternode, int data)
+{
+LNode *pTemp = m_pList;
+int curPos = -1;
+if (afternode > m_listLength ) // 插入点超过总长度
+{
+return false;
+}
+while (pTemp != NULL) // 找到指定的节点
+{
+curPos++;
+if (curPos == afternode) 
+break;
+pTemp = pTemp->next;
+}
+if (curPos != afternode) // 节点未寻到，错误退出
+{
+return false;
+}
+LNode *newNode = new LNode; // 将新节点插入指定节点后
+newNode->data = data;
+newNode->next = pTemp->next;
+pTemp->next = newNode;
+m_listLength++;
+return true;
+}
+
+//remove the node after a specified node
+bool LinkList::RemoveAfter(int removenode) 
+{
+LNode *pTemp = m_pList;
+int curPos=-1;
+if (removenode > m_listLength) // 删除点超过总长度
+{
+return false;
+}
+
+// 找到指定的节点后一个节点，因为删除的是后一个节点
+while (pTemp != NULL) 
+{
+curPos++;
+if (curPos == removenode+1) 
+break;
+pTemp = pTemp->next;
+}
+if (curPos != removenode) // 节点未寻到，错误退出
+{
+return false;
+}
+LNode *pDel = NULL; // 删除节点
+pDel = pTemp->next;
+pTemp->next = pDel->next;
+delete pDel;
+m_listLength--;
+return true;
+}
+
+//sort the linked list to descending order.
+void LinkList::sort()
+{
+if (m_listLength<=1)
+{
+return;
+}
+LNode *pTemp = m_pList;
+int temp;
+// 选择法排序
+for(int i=0;i for(int j=i+1;j if (pTemp[i].data {
+temp=pTemp[i].data;
+pTemp[i].data=pTemp[j].data;
+pTemp[j].data=temp;
+}
+}　
+前两个函数实现了要求a，后一个函数sort()实现了要求b
+
+3. Debugging (Mandatory)
+a. For each of the following recursive methods, enter Y in the answer box if the method terminaters (assume i=5), Otherwise enter N.
+（题目意思：判断下面的递归函数是否可以结束）
+static int f(int i){
+return f(i-1)*f(i-1);
+}
+Ansewr: N,明显没有返回条件语句，无限递归了
+
+static int f(int i){
+if(i==0){return 1;}
+else {return f(i-1)*f(i-1);}
+}　　
+Ansewr:Y，当i＝0时可结束递归
+
+static int f(int i){
+if(i==0){return 1;}
+else {return f(i-1)*f(i-2);}
+}
+Ansewr:N，因为i=1时，f(i-2)=f(-1),进入一个无限递归中
+
+b. There are two errors in the following JAVA program:
+static void g(int i){
+if(i==1){return;}
+if(i%2==0){g(i/2);return;}
+else {g(3*i);return;}
+}
+please correct them to make sure we can get the printed-out result as below:
+3 10 5 16 8 4 2 1
+答：在第一个if语句前加　System.out.print(i+" ");
+　　else 里面的g(3*i)改为g(3*i+1) 
+该题由网友alvin补上，我不熟java。谢谢他。　　
+
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+又到广告时间：版权所有：朱科 欢迎光临我的网站：www.goodsoft.cn，各位转贴别删，劳动成果啊
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+中文笔试题
+1．汉译英
+　　北电网络的开发者计划使来自于不同组织的开发者，能够在北电网络的平台上开发圆满的补充业务。北电网络符合工业标准的开放接口，为补充业务的开展引入了无数商机，开发者计划为不同层面的开发者提供不同等级的资格，资格的划分还考虑到以下因素：补充业务与北电网络平台的集合程度，开发者团体与北电网络的合作关系，等等。
+答：呵呵。这个这个基本上还是不现丑了吧。
+
+2．编程
+　　将整数转换成字符串：void itoa(int,char);
+例如itoa(-123,s[])则s=“-123”;
+答：
+char* itoa(int value, char* string)
+{
+char tmp[33];
+char* tp = tmp;
+int i;
+unsigned v;
+char* sp;
+// 将值转为正值
+if (value < 0)
+v = -value;
+else
+v = (unsigned)value;
+// 将数转换为字符放在数组tmp中
+while (v)
+{
+i = v % 10;
+v = v / 10;
+*tp++ = i+'0';
+}
+// 将tmp里的字符填入string指针里，并加上负号（如果有） 
+sp = string;
+if (value < 0)
+*sp++ = '-';
+while (tp > tmp)
+*sp++ = *--tp;
+*sp = 0;
+return string;
+}
+ 

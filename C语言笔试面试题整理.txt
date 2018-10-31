@@ -1,0 +1,764 @@
+  现在的公司招聘,都要笔试面试.如果你不是那种编程功底非常深厚的人,又不好好准备一番,在笔试面试中往往会处于被动局面.虽然有些笔试题是故意为难我们，
+有点钻牛角尖.但是很多笔试题面试题确实能够很好地看出我们的基础. 在这里,我就略去那些钻牛角尖的题.从csdn论坛我近半年的收集中选出10道有代表性的题目,
+难度基本上是逐渐加大.对数组,指针,数据结构,算法,字符串,文件操作等问题都有覆盖.主要以c语言的实现为主,也有c++的题.大家可以先做做这10道题,测试一下自己的水平.
+
+1. 下面这段代码的输出是多少(在32位机上).
+
+    char *p;
+
+    char *q[20];
+
+    char *m[20][20];
+
+    int (*n)[10];
+
+    struct MyStruct
+
+{ 
+
+char dda; 
+
+double dda1; 
+
+int type ;
+
+}； 
+MyStruct k;
+
+ printf("%d %d %d %d",sizeof(p),sizeof(q),sizeof(m),sizeof(n),sizeof(k));
+
+2.
+
+(1)
+
+char a[2][2][3]={{{1,6,3},{5,4,15}},{{3,5,33},{23,12,7}} };
+for(int i=0;i<12;i++)
+printf("%d ",_______);
+在空格处填上合适的语句，顺序打印出a中的数字
+
+ (2)
+
+char **p, a[16][8];  
+
+问：p=a是否会导致程序在以后出现问题？为什么？
+
+3.用递归方式,非递归方式写函数将一个字符串反转.
+
+   函数原型如下:char *reverse(char *str);
+
+4.strcpy函数和memcpy函数有什么区别?它们各自使用时应该注意什么问题?
+
+5.写一个函数将一个链表逆序.
+
+一个单链表，不知道长度，写一个函数快速找到中间节点的位置.
+
+写一个函数找出一个单向链表的倒数第n个节点的指针.(把能想到的最好算法写出).
+
+6.用递归算法判断数组a[N]是否为一个递增数组。
+
+7.
+
+有一个文件(名为a.txt)如下,每行有4项,第一项是他们的名次,写一个c程序,将五个人的名字打印出来.并按名次排序后将5行数据仍然保存到a.txt中.使文件按名次排列每行.
+
+
+2,07010188,0711,李镇豪,
+1,07010154,0421,陈亦良,
+3,07010194,0312,凌瑞松,
+4,07010209,0351,罗安祥,
+5,07010237,0961,黄世传,
+
+8.写一个函数,判断一个unsigned char 字符有几位是1.
+
+  写一个函数判断计算机的字节存储顺序是升序(little-endian)还是降序(big-endian).
+
+ 9.微软的笔试题.
+
+Implement a string class in C++ with basic functionality like comparison, concatenation, input and output. Please also provide some test cases and using scenarios (sample code of using this class).
+
+Please do not use MFC, STL and other libraries in your implementation.
+
+10.有个数组a[100]存放了100个数,这100个数取自1-99,且只有两个相同的数,剩下的98个数不同,写一个搜索算法找出相同的那个数的值.(注意空间效率时间效率尽可能要低).
+
+这十道题还是能够看出自己的水平如何的.如果你能不假思索地做出这10道题,估计去国外大公司是没有问题了,呵呵.
+
+答案我在整理中,以后陆续发布.................
+
+下面有些题也不错,可以参考.
+
+
+１．下面的代码输出是什么，为什么？
+       void foo(void)
+       {
+            unsigned int a = 6;
+            int b = -20;
+            (a+b>6)?puts(">6"):puts("<=6");//puts为打印函数
+       }
+输出 >6．
+
+就是考察隐式转换．int型变量转化成unsigned int,　b成了正数．
+
+2. b)运行下面的函数会有什么结果？为什么？
+       void foo(void)
+          {
+               char string[10],str1[10];
+               int i;
+               for(i=0;i<10;i++)
+               {
+                    str1[i] = 'a';
+               }
+               strcpy(string, str1);
+           printf("%s",string);
+          }
+
+首先搞清strcpy函数的实现方法，
+
+char * strcpy(char * strDest,const char * strSrc)
+{
+ 　if ((strDest　==　NULL)　||　(strSrc　==　NULL)) 
+ 　　 throw "Invalid argument(s)";
+ 　char * strDestCopy　=　strDest; 
+ 　while ((*strDest++　=　*strSrc++)　!=　'\0'); 
+　 return strDestCopy;
+}
+
+由于str1末尾没有'\0’结束标志，所以strcpy不知道拷贝到何时结束．
+printf函数，对于输出char* 类型，顺序打印字符串中的字符直到遇到空字符（＇＼０＇）或已打印了由精度指定的字符数为止．
+
+下面是微软的两道笔试题....
+
+3. Implement a string class in C++ with basic functionality like comparison, concatenation, input and output. Please also provide some test cases and using scenarios (sample code of using this class).
+
+Please do not use MFC, STL and other libraries in your implementation.
+
+我的实现方案如下,这道题真地对c++的主要特性都进行了较好地考察.
+
+String.h:
+
+#ifndef STRING_H
+#define STRING_H
+
+#include <iostream>
+using namespace std;
+
+class String{
+   public:
+    String();
+       String(int n,char c);
+    String(const char* source);
+    String(const String& s);
+    //String& operator=(char* s);
+    String& operator=(const String& s);
+    ~String();
+
+    char& operator[](int i){return a[i];}
+    const char& operator[](int i) const {return a[i];}//对常量的索引.
+    String& operator+=(const String& s);
+    int length();
+
+   friend istream& operator>>(istream& is, String& s);//搞清为什么将>>设置为友元函数的原因.
+   //friend bool operator< (const String& left,const String& right);
+   friend bool operator> (const String& left, const String& right);//下面三个运算符都没必要设成友元函数,这里是为了简单.
+   friend bool operator== (const String& left, const String& right);
+   friend bool operator!= (const String& left, const String& right);
+   private:
+    char* a;
+    int size;
+};
+
+#endif
+
+
+String.cpp:
+
+
+#include "String.h"
+#include <cstring>
+#include <cstdlib>
+
+String::String(){
+    a = new char[1];
+    a[0] = '\0';
+    size = 0;
+}
+
+String::String(int n,char c){
+ a = new char[n + 1];
+ memset(a,c,n);
+ a[n] = '\0';
+ size = n;
+}
+
+String::String(const char* source){
+ if(source == NULL){
+  a = new char[1];
+  a[0] = '\0';
+  size = 0;
+ }
+ else
+ {   size = strlen(source);
+  a = new char[size + 1];
+  strcpy(a,source);
+ }
+}
+
+String::String(const String& s){
+ size = strlen(s.a);//可以访问私有变量.
+ a = new char[size + 1];
+ //if(a == NULL)
+ strcpy(a,s.a);
+}
+
+ 
+
+String& String::operator=(const String& s){
+ if(this == &s)
+  return *this;
+ else
+ {
+  delete[] a;
+        size = strlen(s.a);
+  a = new char[size + 1];
+  strcpy(a,s.a);
+  return *this;
+ }
+}
+String::~String(){
+ delete[] a;//     
+}
+
+String& String::operator+=(const String& s){
+  int j = strlen(a);
+  int size = j + strlen(s.a);
+  char* tmp = new char[size+1];
+  strcpy(tmp,a);
+  strcpy(tmp+j,s.a);
+ delete[] a;
+ a = tmp;
+
+ return *this;
+ }
+
+int String::length(){
+ return strlen(a);
+}
+
+main.cpp:
+
+#include <iostream>
+#include "String.h"
+
+using namespace std;
+
+bool operator==(const String& left, const String& right)
+{
+ int a = strcmp(left.a,right.a);
+    if(a == 0)
+  return true;
+ else
+  return false;
+}
+bool operator!=(const String& left, const String& right)
+{
+ return  !(left == right);
+}
+
+ostream& operator<<(ostream& os,String& s){
+ int length = s.length();
+ for(int i = 0;i < length;i++)
+  //os << s.a[i];这么不行,私有变量.
+  os << s[i];
+ return os;
+}
+
+
+String operator+(const String& a,const String& b){
+ String temp;
+ temp = a;
+ temp += b;
+ return temp;
+
+}
+
+bool operator<(const String& left,const String& right){
+ 
+ int j = 0;
+ while((left[j] != '\0') && (right[j] != '\0')){
+  if(left[j] < right[j])
+   return true;
+  else
+  {
+   if(left[j] == right[j]){
+    j++;
+    continue;
+   }
+   else
+    return false;
+  }
+ }
+ if((left[j] == '\0') && (right[j] != '\0'))
+  return true;
+ else
+  return false;
+}
+
+bool operator>(const String& left, const String& right)
+{   int a = strcmp(left.a,right.a);
+    if(a > 0)
+  return true;
+ else
+  return false;
+ 
+}
+
+istream& operator>>(istream& is, String& s){
+ delete[] s.a;
+ s.a = new char[20];
+ int m = 20;
+    char c;
+ int i = 0;
+ while (is.get(c) && isspace(c));
+    if (is) {
+  do {s.a[i] = c;
+       i++;
+    /*if(i >= 20){
+      cout << "Input too much characters!" << endl;
+      exit(-1);
+    }*/
+    if(i == m - 1 ){
+     s.a[i] = '\0';
+     char* b = new char[m];
+     strcpy(b,s.a);
+                 m = m * 2;
+        s.a = new char[m];
+     strcpy(s.a,b);
+     delete[] b;
+    }
+  }
+  while (is.get(c) && !isspace(c));
+        //如果读到空白,将其放回.
+  if (is)
+   is.unget();
+ }
+ s.size = i;
+ s.a[i] = '\0';
+ return is;
+}
+
+
+int main(){
+ String a = "abcd";
+ String b = "www";
+ //String c(6,b);这么写不对.
+    String c(6,'l');
+ String d;
+ String e = a;//abcd
+ String f;
+ cin >> f;//需要输入...
+ String g;
+ g = a + b;//abcdwww
+
+ if(a < b)
+  cout << "a < b" << endl;
+ else
+  cout << "a >= b" << endl;
+ if(e == a)
+  cout << "e == a" << endl;
+ else
+  cout << "e != a" << endl;
+ 
+ b += a;
+ 
+ cout << a << endl;
+ cout << b << endl;
+    cout << c << endl;
+ cout << d << endl;
+ cout << e << endl;
+ cout << f << endl;
+ cout << g << endl;
+ cout << g[0] << endl;
+ return 0;
+}
+
+
+ 
+
+ 
+
+4. Implement a single-direction linked list sorting algorithm. Please first define the data structure of linked list and then implement the sorting algorithm. 
+
+ 
+
+5.编写一个函数，返回两个字符串的最大公串！例如，“adbccadebbca”和“edabccadece”,返回“ccade”
+
+ 
+
+<<联想笔试题>>
+1．设计函数 int atoi(char *s)。
+ int atoi(const char *nptr);
+ 函数说明
+ atoi()会扫描参数nptr字符串，跳过前面的空格字符，直到遇上数字或正负符号才开始做转换，而再 遇到非数字或字符串结束时('\0')才结束转换，并将结果返回。
+返回值 返回转换后的整型数。
+
+#include <stdio.h>
+#include <ctype.h>
+
+int myAtoi(const char* s){
+ int result = 0;
+ int flag = 1;
+ int i = 0;
+ while(isspace(s[i]))
+  i++;
+ if(s[i] == '-'){
+  flag = -1;
+  i++;
+ }
+ if(s[i] == '+')
+  i++;
+ while(s[i] != '\0'){
+  if((s[i] > '9') || (s[i] < '0'))
+   break;
+  int j = s[i] - '0';
+  result = 10 * result + j;
+  i++;
+ }
+ result = result * flag;
+ return result;
+}
+
+int main(){
+ char* a = "   -1234def";
+ char* b = "+1234";
+ int i = myAtoi(a);
+ int j = myAtoi(b);
+ printf("%d \n",i);
+ printf("%d",j);
+ return 0;
+}
+　　2．int i=(j=4,k=8,l=16,m=32); printf(“%d”, i); 输出是多少？
+　　3．解释局部变量、全局变量和静态变量的含义。
+　　4．解释堆和栈的区别。
+　　5．论述含参数的宏与函数的优缺点。
+
+<<普天C++笔试题>>
+　　1．实现双向链表删除一个节点P，在节点P后插入一个节点，写出这两个函数。
+　　2．写一个函数，将其中的\t都转换成4个空格。
+　　3．Windows程序的入口是哪里？写出Windows消息机制的流程。
+　　4．如何定义和实现一个类的成员函数为回调函数？
+　　5．C++里面是不是所有的动作都是main()引起的？如果不是，请举例。
+　　6．C++里面如何声明const void f(void)函数为C程序中的库函数？
+　　7．下列哪两个是等同的
+　　int b;
+　　A const int* a = &b;
+　　B const* int a = &b;
+　　C const int* const a = &b;
+　　D int const* const a = &b;
+　　8．内联函数在编译时是否做参数类型检查？
+　　void g(base & b){
+　　 b.play;
+　　}
+　　void main(){
+　　 son s;
+　　 g(s);
+　　 return;
+　　}
+
+<<华为笔试题>>
+
+笔试内容包括：
+
+　　1。技术试题：系统windows/linux，网络基础，通信基础，数据库
+
+　　2。能力试题：根据两故事发表看法
+
+　　3。英语作文
+
+　　筛选后进入面试。
+　
+　　共有四轮面试：
+
+　　问题一：两笔记本电脑连起来后拼不通，你觉得可能有哪些问题？
+
+　　问题二：我们在南京，和深圳的网络是通的，但和北京的网络不通，你以怎样的顺序检查问题？
+
+　　问题三：解释什么叫“透明”？什么叫“网格”？
+
+　　问题四：交换和路由的区别？vlan的特点？
+
+　　问题五：画一个积分电路和一个微分电路。
+
+　　问题六：知道现在的路由器是第几代了吗？
+
+
+
+问题一：两笔记本电脑连起来后拼不通，你觉得可能有哪些问题？
+　　答：首选想到是软件问题，软件问题首选查找是否安装有防火墙程序，如否则查看驱动程序有无问题，然后如果是WINDOWS的系统，再查看TCP/IP协议IP地址是否在一个子网，如果以上都无问题，则查看硬件，顺序是网卡－－网线。
+
+　　问题二：我们在南京，和深圳的网络是通的，但和北京的网络不通，你以怎样的顺序检查问题？
+　　答：首选要知道三方的网络拓朴结构与设计规划，然后确定北京地区网络内部是否畅通，网络是否是新建立了，如果不是新建的网，首先要知道以前是否通，如通，则此次不通是在做过什么操作后不通的，确定后首先排除线路故障，然后再看双方连接的路由设置。
+　　问题三：解释什么叫“透明”？什么叫“网格”？
+　　答：透明对用户来说是感觉不到的，也就是说不论对网络加了什么设备或软件，用户都感觉不到，这样的好处是简化了用户的操作复杂性。网络的概念，是说通过无线或有线将多种服务综合连接到一起，让用户彼此之间可以交换信息。
+
+　　问题四：交换和路由的区别？vlan的特点？
+　　答：交换和路由最大的区别在于交换是通过ASIC专用硬件处理数据，路由是通过CPU用软件的形式处理数据。VLAN的特点为将一个物理网络从逻辑上划分出了多个广播域
+
+　　1．请你分别画出OSI的七层网络结构图和TCP/IP的五层结构图。
+　　2．请你详细地解释一下IP协议的定义，在哪个层上面？主要有什么作用？TCP与UDP呢？
+　　3．请问交换机和路由器各自的实现原理是什么？分别在哪个层次上面实现的？
+　　4．请问C++的类和C里面的struct有什么区别？
+　　5．请讲一讲析构函数和虚函数的用法和作用。
+　　6．全局变量和局部变量有什么区别？是怎么实现的？操作系统和编译器是怎么知道的？
+全局变量是在所有函数之外声明的变量，局部变量则是在函数体内声明的变量。全局变量放在内存的全程数据区，局部变量在栈上申请。
+全局数据区分为两部分全局数据区和静态数据区，静态数据区专门存放static变量。static的全局变量只在该文件范围内可见，不能用extern声明为外部变量。 
+编译器会自动初始化全局变量。
+ 
+全局变量的内存分配是静态的，位于PE文件在数据区，在main()前由C、C++运行期函数初始化，如果没有初值，会被初始化为0。局部变量的内存分配是动态的，位于线程堆栈中。如果没有初始化的，初值视当前内存内的值而定。
+
+局部变量是在栈中，外部变量是放在数据段，手动分配malloc的才是放在堆中。
+
+　　7．8086是多少位的系统？在数据总线上是怎么实现的？
+8086是Intel的16位微处理器，有16根数据线和20根地址线，它既能处理16位数据，也能处理8位数据，内部数据总线都是按16位设计的，单外部数据总线只有8条。
+1．请你分别画出OSI的七层网络结构图和TCP/IP的五层结构图。
+答：OSI七层网络结构图
+应用层 
+表示层 
+会话层 
+传输层 
+网络层 
+数据链路层
+物理层
+TCP/IP的五层结构图
+应用层
+运输层
+网络层 
+数据链路层
+物理层
+
+　　2．请你详细地解释一下IP协议的定义，在哪个层上面？主要有什么作用？TCP与UDP呢？
+答：IP是Internet Protocol的简称，是网络层的主要协议，作用是提供不可靠、无连接的数据报传送。TCP是Transmit Control Protocol（传输控制协议）的缩写，在运输层，TCP提供一种面向连接的，可靠的字节流服务；UDP是User Datagram Protocol（用户数据报协议）的缩写，在运输层，UDP提供不可靠的传输数据服务
+
+　　3．请问交换机和路由器各自的实现原理是什么？分别在哪个层次上面实现的？
+答：交换机属于ＯＳＩ第二层即数据链路层设备。它根据ＭＡＣ地址寻址，通过站表选择路由，站表的建立和维护由交换机自动进行。路由器属于ＯＳＩ第三层即网络层设备，它根据ＩＰ地址进行寻址，通过路由表路由协议产生。交换机最大的好处是快速，路由器最大的好处是控制能力强。
+
+　　4．请问C++的类和C里面的struct有什么区别？
+答：struct的成员的默认访问说明符为Public，而class的成员的默认访问说明符为Private。其他没有区别
+
+　　5．请讲一讲析构函数和虚函数的用法和作用。
+答：析构函数是在对象生存期结束时自动调用的函数，用来释放在构造函数分配的内存。
+虚函数是指被关键字virtual说明的函数，作用是使用C++语言的多态特性 
+
+　　6．全局变量和局部变量有什么区别？是怎么实现的？操作系统和编译器是怎么知道的？
+答：一些变量在整个程序中都是可见的，它们称为全局变量。一些变量只能在一个函数中可知，称为局部变量。这就是他们的区别。
+在任何函数外面定义的变量就是全局变量，在函数内部定义的变量是局部变量，这是它们在程序中的实现过程。
+操作系统和编译器是根据程序运行的内存区域知道他们的，程序的全局数据放在所分配内存的全局数据区，程序的局部数据放在栈区。
+
+　　7．8086是多少位的系统？在数据总线上是怎么实现的？
+答：8086的机器字长是16位，8086使用40个引脚的16个做地址/数据复用引腿来传输数据，一次读写过程由一个基本总线周期完成，它由4个时钟(CLK)周期组成，按时间顺序定义为T1、T2、T3、T4。在T1期间8086发出访问目的地的地址信号和地址锁存选通信号ALE；T2期间发出读写命令信号RD、WR及其它相关信号；T3期间完成数据的访问；T4结束该总线周期。可见，地址与数据信号不会同时出现在一个时钟(CLK)周期，二者可以分时复用同一组引线。
+
+a4：c++中的类具有成员保护功能，并且具有继承，多态这类oo特点，而c里的struct没有 
+
+a5：析构函数一般在对象撤消前做收尾工作，比如回收内存等工作，虚拟函数的功能是使子类可以用同名的函数对父类函数进行重载，并且在调用时自动调用子类重载函数，如果是纯虚函数，则纯粹是为了在子类重载时有个统一的命名而已。（说得不是很确切，自己随便找本c++的书都有说明） 
+
+a6：全局变量的生命周期是整个程序运行的时间，而局部变量的生命周期则是局部函数或过程调用的时间段。其实现是由编译器在编译时采用不同内存分配方法。全局变量在main函数调用后，就开始分配，如果是静态变量则是在main函数前就已经初始化了。而局部变量则是在用户栈中动态分配的（还是建议看编译原理中的活动记录这一块） 
+
+a8：8086系统是16位系统，其数据总线是20位，实现过程，微机原理上有，我也差不多忘了，呵呵 
+
+
+<<Sony笔试题>>
+　　1．完成下列程序
+　　*
+　　*.*.
+　　*..*..*..
+　　*...*...*...*...
+　　*....*....*....*....*....
+　　*.....*.....*.....*.....*.....*.....
+　　*......*......*......*......*......*......*......
+　　*.......*.......*.......*.......*.......*.......*.......*.......
+　　#include <stdio.h>
+　　#define N 8
+　　int main()
+　　{
+　　 int i;
+　　 int j;
+　　 int k;
+　　 ---------------------------------------------------------
+　　 | |
+　　 | |
+　　 | |
+　　 ---------------------------------------------------------
+　　 return 0;
+　　}
+　　2．完成程序，实现对数组的降序排序
+　　#include <stdio.h>
+　　void sort( );
+　　int main()
+　　{
+　　 int array[]={45，56，76，234，1，34，23，2，3}； //数字任//意给出
+　　 sort( );
+　　 return 0;
+　　}
+　　void sort( )
+　　{
+　　 ____________________________________
+　　 | |
+　　 | |
+　　 |-----------------------------------------------------|
+　　}
+　　3．费波那其数列，1，1，2，3，5……编写程序求第十项。可以用递归，也可以用其他方法，但要说明你选择的理由。
+　　#include <stdio.h>
+　　int Pheponatch(int);
+　　int main()
+　　{
+　　 printf("The 10th is %d",Pheponatch(10));
+　　 return 0;
+　　}
+　　int Pheponatch(int N)
+　　{
+　　--------------------------------
+　　| |
+　　| |
+　　--------------------------------
+　　}
+　　4．下列程序运行时会崩溃，请找出错误并改正，并且说明原因。
+　　#include <stdio.h>
+　　#include <malloc.h>
+　　typedef struct{
+　　 TNode* left;
+　　 TNode* right;
+　　 int value;
+　　} TNode;
+　　TNode* root=NULL;
+　　void append(int N);
+　　int main()
+　　{
+　　 append(63);
+　　 append(45);
+　　 append(32);
+　　 append(77);
+　　 append(96);
+　　 append(21);
+　　 append(17); // Again, 数字任意给出
+　　}
+　　void append(int N)
+　　{
+　　 TNode* NewNode=(TNode *)malloc(sizeof(TNode));
+　　 NewNode->value=N;
+　　
+　　 if(root==NULL)
+　　 {
+　　 root=NewNode;
+　　 return;
+　　 }
+　　 else
+　　 {
+　　 TNode* temp;
+　　 temp=root;
+　　 while((N>=temp.value && temp.left!=NULL) || (N<temp. value && temp. right!=NULL
+　　))
+　　 {
+　　 while(N>=temp.value && temp.left!=NULL)
+　　 temp=temp.left;
+　　 while(N<temp.value && temp.right!=NULL)
+　　 temp=temp.right;
+　　 }
+　　 if(N>=temp.value)
+　　 temp.left=NewNode;
+　　 else
+　　 temp.right=NewNode;
+　　 return;
+　　 }
+　　}
+
+
+MSRA Interview Written Exam（December 2003，Time：2.5 Hours） 
+
+
+1写出下列算法的时间复杂度。 
+(1)冒泡排序； 
+(2)选择排序； 
+(3)插入排序； 
+(4)快速排序； 
+(5)堆排序； 
+(6)归并排序； 
+
+2写出下列程序在X86上的运行结果。 
+
+struct mybitfields 
+{ 
+unsigned short a : 4; 
+unsigned short b : 5; 
+unsigned short c : 7; 
+}test 
+
+void main(void)  
+{ 
+int i; 
+test.a=2; 
+test.b=3; 
+test.c=0; 
+
+i=*((short *)&test); 
+printf("%d\n",i); 
+} 
+
+3写出下列程序的运行结果。 
+
+unsigned int i=3; 
+cout<<i * -1; 
+
+4写出下列程序所有可能的运行结果。 
+
+int a; 
+int b; 
+int c; 
+
+void F1() 
+{ 
+b=a*2; 
+a=b; 
+} 
+
+void F2() 
+{ 
+c=a+1; 
+a=c; 
+} 
+
+main() 
+{ 
+a=5; 
+//Start F1,F2 in parallel 
+F1(); F2(); 
+printf("a=%d\n",a); 
+} 
+
+5考察了一个CharPrev()函数的作用。 
+
+6对 16 Bits colors的处理，要求： 
+（1）Byte转换为RGB时，保留高5、6bits； 
+（2）RGB转换为Byte时，第2、3位置零。 
+
+7一个链表的操作，注意代码的健壮和安全性。要求： 
+（1）增加一个元素； 
+（2）获得头元素； 
+（3）弹出头元素（获得值并删除）。 
+
+8一个给定的数值由左边开始升位到右边第N位，如 
+0010<<1 == 0100 
+或者 
+0001 0011<<4 == 0011 0000 
+请用C或者C++或者其他X86上能运行的程序实现。 
+
+附加题（只有在完成以上题目后，才获准回答） 
+In C++, what does "explicit" mean? what does "protected" mean? 
+
+1。在C++中有没有纯虚构造函数？ 
+2。在c++的一个类中声明一个static成员变量有没有用？ 
+3。在C++的一个类中声明一个静态成员函数有没有用？ 
+4。如何实现一个非阻塞的socket? 
+5。setsockopt, ioctl都可以对socket的属性进行设置，他们有什么不同？ 
+6。解释一下进程和线程的区别？ 
+7。解释一下多播（组播）和广播的含义？ 
+8。多播采用的协议是什么？ 
+9。在c++中纯虚析构函数的作用是什么？请举例说明。 
+10。编程，请实现一个c语言中类似atoi的函数功能（输入可能包含非数字和空格）
+

@@ -1,0 +1,180 @@
+1、同步电路和异步电路的区别是什么？（仕兰微电子）  
+2、什么是同步逻辑和异步逻辑？（汉王笔试）  
+同步逻辑是时钟之间有固定的因果关系。异步逻辑是各时钟之间没有固定的因果关系。  
+3、什么是"线与"逻辑，要实现它，在硬件特性上有什么具体要求？（汉王笔试）  
+线与逻辑是两个输出信号相连可以实现与的功能。在硬件上，要用oc门来实现，由于不用 oc门可能使灌电流过大，而烧坏逻辑门。同时在输出端口应加一个上拉电阻。  
+4、什么是Setup 和Holdup时间？（汉王笔试）  
+5、setup和holdup时间,区别.（南山之桥）  
+6、解释setup time和hold time的定义和在时钟信号延迟时的变化。（未知）  
+7、解释setup和hold time violation，画图说明，并说明解决办法。（威盛VIA   
+2003.11.06 上海笔试试题）  
+Setup/hold time 是测试芯片对输入信号和时钟信号之间的时间要求。建立时间是指触发器的时钟信号上升沿到来以前，数据稳定不变的时间。输入信号应提前时钟上升沿（如上升沿有效）T时间到达芯片，这个T就是建立时间-Setup time.如不满足setup time,这个数据就不能被这一时钟打入触发器，只有在下一个时钟上升沿，数据才能被打入触发器。保持时间是指触发器的时钟信号上升沿到来以后，数据稳定不变的时间。如果hold time 不够，数据同样不能被打入触发器。  
+建立时间(Setup Time)和保持时间（Hold time）。建立时间是指在时钟边沿前，数据信号需要保持不变的时间。保持时间是指时钟跳变边沿后数据信号需要保持不变的时间。如果不满足建立和保持时间的话，那么DFF将不能正确地采样到数据，将会出现 metastability的情况。如果数据信号在时钟沿触发前后持续的时间均超过建立和保持时间，那么超过量就分别被称为建立时间裕量和保持时间裕量。  
+8、说说对数字逻辑中的竞争和冒险的理解，并举例说明竞争和冒险怎样消除。（仕兰微电子）  
+9、什么是竞争与冒险现象？怎样判断？如何消除？（汉王笔试）  
+在组合逻辑中，由于门的输入信号通路中经过了不同的延时，导致到达该门的时间不一致叫竞争。产生毛刺叫冒险。如果布尔式中有相反的信号则可能产生竞争和冒险现象。解决方法：一是添加布尔式的消去项，二是在芯片外部加电容。  
+10、你知道那些常用逻辑电平？TTL与COMS电平可以直接互连吗？（汉王笔试）  
+常用逻辑电平：12V，5V，3.3V；TTL和CMOS不可以直接互连，由于TTL是在0.3-3.6V之间，而CMOS则是有在12V的有在5V的。CMOS输出接到TTL是可以直接互连。TTL接到CMOS需要在输出端口加一上拉电阻接到5V或者12V。  
+11、如何解决亚稳态。（飞利浦－大唐笔试）  
+亚稳态是指触发器无法在某个规定时间段内达到一个可确认的状态。当一个触发器进入亚  
+稳态时，既无法预测该单元的输出电平，也无法预测何时输出才能稳定在某个正确的电平  
+上。在这个稳定期间，触发器输出一些中间级电平，或者可能处于振荡状态，并且这种无  
+用的输出电平可以沿信号通道上的各个触发器级联式传播下去。  
+12、IC设计中同步复位与异步复位的区别。（南山之桥）  
+13、MOORE 与 MEELEY状态机的特征。（南山之桥）  
+14、多时域设计中,如何处理信号跨时域。（南山之桥）  
+15、给了reg的setup,hold时间，求中间组合逻辑的delay范围。（飞利浦－大唐笔试）  
+Delay < period - setup – hold  
+16、时钟周期为T,触发器D1的建立时间最大为T1max，最小为T1min。组合逻辑电路最大延  
+迟为T2max,最小为T2min。问，触发器D2的建立时间T3和保持时间应满足什么条件。（华  
+为）  
+17、给出某个一般时序电路的图，有Tsetup,Tdelay,Tck->q,还有 clock的delay,写出决  
+定最大时钟的因素，同时给出表达式。（威盛VIA 2003.11.06 上海笔试试题）  
+18、说说静态、动态时序模拟的优缺点。（威盛VIA 2003.11.06 上海笔试试题）  
+19、一个四级的Mux,其中第二级信号为关键信号如何改善timing。（威盛VIA   
+2003.11.06 上海笔试试题）  
+20、给出一个门级的图，又给了各个门的传输延时，问关键路径是什么，还问给出输入，  
+使得输出依赖于关键路径。（未知）  
+21、逻辑方面数字电路的卡诺图化简，时序（同步异步差异），触发器有几种（区别，优  
+点），全加器等等。（未知）  
+22、卡诺图写出逻辑表达使。（威盛VIA 2003.11.06 上海笔试试题）  
+23、化简F(A,B,C,D)= m(1,3,4,5,10,11,12,13,14,15)的和。（威盛）  
+24、please show the CMOS inverter schmatic,layout and its cross sectionwith P-  
+well process.Plot its transfer curve (Vout-Vin) And also explain the   
+operation region of PMOS and NMOS for each segment of the transfer curve? （威  
+盛笔试题circuit design-beijing-03.11.09）  
+25、To design a CMOS invertor with balance rise and fall time,please define   
+the ration of channel width of PMOS and NMOS and explain?  
+26、为什么一个标准的倒相器中P管的宽长比要比N管的宽长比大？（仕兰微电子）  
+27、用mos管搭出一个二输入与非门。（扬智电子笔试）  
+28、please draw the transistor level schematic of a cmos 2 input AND gate and   
+explain which input has faster response for output rising edge.(less delay   
+time)。（威盛笔试题circuit design-beijing-03.11.09）  
+29、画出NOT,NAND,NOR的符号，真值表，还有transistor level的电路。（Infineon笔  
+试）   
+30、画出CMOS的图，画出tow-to-one mux gate。（威盛VIA 2003.11.06 上海笔试试题）  
+31、用一个二选一mux和一个inv实现异或。（飞利浦－大唐笔试）  
+32、画出Y=A*B+C的cmos电路图。（科广试题）  
+33、用逻辑们和cmos电路实现ab+cd。（飞利浦－大唐笔试）  
+34、画出CMOS电路的晶体管级电路图，实现Y=A*B+C(D+E)。（仕兰微电子）  
+35、利用4选1实现F(x,y,z)=xz+yz’。（未知）  
+36、给一个表达式f=xxxx+xxxx+xxxxx+xxxx用最少数量的与非门实现（实际上就是化  
+简）。  
+37、给出一个简单的由多个NOT,NAND,NOR组成的原理图，根据输入波形画出各点波形。  
+（Infineon笔试）  
+38、为了实现逻辑（A XOR B）OR （C AND D），请选用以下逻辑中的一种，并说明为什  
+么？1）INV   2）AND   3）OR   4）NAND   5）NOR   6）XOR  答案：NAND（未知）  
+39、用与非门等设计全加法器。（华为）  
+40、给出两个门电路让你分析异同。（华为）  
+41、用简单电路实现，当A为输入时，输出B波形为…（仕兰微电子）  
+42、A,B,C,D,E进行投票，多数服从少数，输出是F（也就是如果A,B,C,D,E中1的个数比0  
+多，那么F输出为1，否则F为0），用与非门实现，输入数目没有限制。（未知）  
+43、用波形表示D触发器的功能。（扬智电子笔试）  
+44、用传输门和倒向器搭一个边沿触发器。（扬智电子笔试）  
+45、用逻辑们画出D触发器。（威盛VIA 2003.11.06 上海笔试试题）  
+46、画出DFF的结构图,用verilog实现之。（威盛）  
+47、画出一种CMOS的D锁存器的电路图和版图。（未知）  
+48、D触发器和D锁存器的区别。（新太硬件面试）  
+49、简述latch和filp-flop的异同。（未知）  
+50、LATCH和DFF的概念和区别。（未知）  
+51、latch与register的区别,为什么现在多用register.行为级描述中latch如何产生的。  
+（南山之桥）  
+52、用D触发器做个二分颦的电路.又问什么是状态图。（华为）  
+53、请画出用D触发器实现2倍分频的逻辑电路？（汉王笔试）  
+54、怎样用D触发器、与或非门组成二分频电路？（东信笔试）  
+55、How many flip-flop circuits are needed to divide by 16?  (Intel) 16分频？  
+56、用filp-flop和logic-gate设计一个1位加法器，输入carryin和current-stage，输出  
+carryout和next-stage. （未知）  
+57、用D触发器做个4进制的计数。（华为）  
+58、实现N位Johnson Counter,N=5。（南山之桥）  
+59、用你熟悉的设计方式设计一个可预置初值的7进制循环计数器，15进制的呢？（仕兰  
+微电子）  
+60、数字电路设计当然必问Verilog/VHDL，如设计计数器。（未知）  
+61、BLOCKING NONBLOCKING 赋值的区别。（南山之桥）  
+62、写异步D触发器的verilog module。（扬智电子笔试）  
+module dff8(clk , reset, d, q);  
+input        clk;  
+input        reset;  
+input  [7:0] d;  
+output [7:0] q;  
+reg   [7:0] q;  
+always @ (posedge clk or posedge reset)  
+   if(reset)  
+     q <= 0;  
+   else  
+     q <= d;  
+endmodule  
+63、用D触发器实现2倍分频的Verilog描述？（汉王笔试）  
+module divide2( clk , clk_o, reset);  
+   input     clk , reset;  
+   output   clk_o;  
+   wire in;   
+reg out ;  
+   always @ ( posedge clk or posedge reset)  
+     if ( reset)  
+       out <= 0;  
+         else  
+           out <= in;  
+       assign in = ~out;  
+       assign clk_o = out;  
+     endmodule  
+64、可编程逻辑器件在现代电子设计中越来越重要，请问：a) 你所知道的可编程逻辑器  
+件有哪些？ b) 试用VHDL或VERILOG、ABLE描述8位D触发器逻辑。（汉王笔试）  
+PAL，PLD，CPLD，FPGA。  
+module dff8(clk , reset, d, q);  
+input        clk;  
+input        reset;  
+input   d;  
+output  q;  
+reg q;  
+always @ (posedge clk or posedge reset)  
+   if(reset)  
+     q <= 0;  
+   else  
+     q <= d;  
+endmodule  
+65、请用HDL描述四位的全加法器、5分频电路。（仕兰微电子）  
+66、用VERILOG或VHDL写一段代码，实现10进制计数器。（未知）  
+67、用VERILOG或VHDL写一段代码，实现消除一个glitch。（未知）  
+68、一个状态机的题目用verilog实现（不过这个状态机画的实在比较差，很容易误解  
+的）。（威盛VIA 2003.11.06 上海笔试试题）  
+69、描述一个交通信号灯的设计。（仕兰微电子）  
+70、画状态机，接受1，2，5分钱的卖报机，每份报纸5分钱。（扬智电子笔试）  
+71、设计一个自动售货机系统，卖soda水的，只能投进三种硬币，要正确的找回钱  
+数。       （1）画出fsm（有限状态机）；（2）用verilog编程，语法要符合fpga设计  
+的要求。（未知）  
+72、设计一个自动饮料售卖机，饮料10分钱，硬币有5分和10分两种，并考虑找零：（1）  
+画出fsm（有限状态机）；（2）用verilog编程，语法要符合fpga设计的要求；（3）设计  
+工程中可使用的工具及设计大致过程。（未知）  
+73、画出可以检测10010串的状态图,并verilog实现之。（威盛）  
+74、用FSM实现101101的序列检测模块。（南山之桥）  
+a为输入端，b为输出端，如果a连续输入为1101则b输出为1，否则为0。  
+例如a： 0001100110110100100110  
+       b： 0000000000100100000000  
+    请画出state machine；请用RTL描述其state machine。（未知）  
+75、用verilog/vddl检测stream中的特定字符串（分状态用状态机写）。（飞利浦－大唐  
+笔试）  
+76、用verilog/vhdl写一个fifo控制器(包括空，满，半满信号)。（飞利浦－大唐笔试）  
+77、现有一用户需要一种集成电路产品，要求该产品能够实现如下功能：y=lnx，其中，x  
+为4位二进制整数输入信号。y为二进制小数输出，要求保留两位小数。电源电压为3~5v假  
+设公司接到该项目后，交由你来负责该产品的设计，试讨论该产品的设计全程。（仕兰微  
+电子）  
+78、sram，falsh memory，及dram的区别？（新太硬件面试）  
+79、给出单管DRAM的原理图(西电版《数字电子技术基础》作者杨颂华、冯毛官205页图9  
+－14b)，问你有什么办法提高refresh time，总共有5个问题，记不起来了。（降低温  
+度，增大电容存储容量）（Infineon笔试）  
+80、Please draw schematic of a common SRAM cell with 6 transistors,point out   
+which nodes can store data and which node is word line control? （威盛笔试题  
+circuit design-beijing-03.11.09）  
+81、名词:sram,ssram,sdram  
+名词IRQ,BIOS,USB,VHDL,SDR  
+IRQ:   Interrupt ReQuest  
+BIOS:  Basic Input Output System  
+USB:  Universal Serial Bus  
+VHDL: VHIC Hardware De******ion Language  
+SDR:  Single Data Rate  
+　　压控振荡器的英文缩写(VCO)。  
+　　动态随机存储器的英文缩写(DRAM)。  
+名词解释，无聊的外文缩写罢了，比如PCI、ECC、DDR、interrupt、pipeline、  
+IRQ,BIOS,USB,VHDL,VLSI VCO(压控振荡器) RAM (动态随机存储器)，FIR IIR DFT(离散  
+傅立叶变换)或者是中文的，比如：a.量化误差  b.直方图  c.白平衡   
